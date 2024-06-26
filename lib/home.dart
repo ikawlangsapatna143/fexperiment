@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       //backgroundColor: ,
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Text(
             'User Profile',
             style: TextStyle(
@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.deepPurple[600],
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -38,12 +38,12 @@ class _HomeState extends State<Home> {
                 Center(
                   child: CircleAvatar(
                     radius: 65.0,
-                    backgroundImage: AssetImage('assets/channels4_profile.jpeg'),
+                    backgroundImage: const AssetImage('assets/channels4_profile.jpeg'),
                     backgroundColor: Colors.deepPurple[400],
                   ),
                 ),
-                Divider(height:55.0),
-                Row(
+                const Divider(height:55.0),
+                const Row(
                   children: [
                     Icon(Icons.person_2,
                     color: Colors.deepPurpleAccent,
@@ -59,7 +59,7 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                Text(
+                const Text(
                   'CHRISTOPER NEO G. BANSON',
                   style: TextStyle(
                       fontSize: 20.0,
@@ -67,10 +67,10 @@ class _HomeState extends State<Home> {
                       fontFamily: 'Raleway',
                       color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
-                Row(
+                const Row(
                   children: [
                     Icon(Icons.date_range,
                       color: Colors.deepPurpleAccent,
@@ -88,16 +88,16 @@ class _HomeState extends State<Home> {
                 ),
                 Text(
                   '$year Year',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Raleway',
                       color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
-                Row(
+                const Row(
                   children: [
                     Icon(Icons.account_circle_outlined,
                       color: Colors.deepPurpleAccent,
@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
                     ),
                   ],
                 ),
-                Text(
+                const Text(
                   'BANSONCHRISTOPER@GMAIL.COM',
                   style: TextStyle(
                       fontSize: 20.0,
@@ -132,7 +132,10 @@ class _HomeState extends State<Home> {
                         year += 1;
                       });
                     },
-                    child: Text('Add Year',
+                  style: const ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(Colors.deepPurple),
+                  ),
+                    child: const Text('Add Year',
                     style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.bold,
@@ -140,9 +143,6 @@ class _HomeState extends State<Home> {
                         color: Colors.white
                     ),
                     ),
-                  style: const ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(Colors.deepPurple),
-                  ),
                   ),
               ],
             ),
