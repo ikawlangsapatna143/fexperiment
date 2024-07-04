@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/home.dart';
 import 'package:untitled2/pages/dashboard.dart';
+import 'package:untitled2/pages/login.dart';
 import 'package:untitled2/pages/menu.dart';
+import 'package:untitled2/pages/signup.dart';
 
 void main() => runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
-  routes: {
-    '/' : (context) => Dashboard(),
-    '/menu' : (context) => Menu(),
-    '/profile' : (context) => Home(),
-  },
+initialRoute: '/login',
+routes: {
+'/' : (context) => Dashboard(),
+'/menu' : (context) => Menu(),
+'profile' : (context) => Home(),
+'/signup' : (context) => Signup(),
+'/login' : (context) => Login()
+},
 ));
