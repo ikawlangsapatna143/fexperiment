@@ -6,10 +6,21 @@ class Selectedproduct extends StatefulWidget {
   const Selectedproduct({super.key, required this.product});
 
   @override
-  State<Selectedproduct> createState() => _SelectedproductState();
+  State<Selectedproduct> createState() => _SelectedproductState(product: product);
 }
 
 class _SelectedproductState extends State<Selectedproduct> {
+ final Product product;
+late double totalAmount;
+int numberofOrders = 1;
+ _SelectedproductState({required this.product});
+
+ @override
+  void initState() {
+    super.initState();
+    totalAmount = product.price;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +37,7 @@ class _SelectedproductState extends State<Selectedproduct> {
     centerTitle: true,
     ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             children: [
@@ -36,18 +48,45 @@ class _SelectedproductState extends State<Selectedproduct> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.product.price.toString()),
+              Text(
+    '₱ ${totalAmount.toString()}',
+                style: TextStyle(
+                  fontSize: 20.0,
+                ),
+              ),
               Row(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.remove),
                     onPressed: (){
+                      setState(() {
+                        if(numberofOrders > 1){
+                          numberofOrders -= 1;
+                          totalAmount = product.price * numberofOrders;
+                        }
+                      });
                     },
+                    icon: Icon(Icons.remove),
+                    style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(Colors.white)
+                    ),
                   ),
-                  Text(widget.product.price.toString()),
+                  Text(
+                    numberofOrders.toString(),
+                  style: TextStyle(
+                  fontSize: 20.0,
+                  ),
+                  ),
                   IconButton(
                     icon: Icon(Icons.add),
-                    onPressed: (){},
+                    onPressed: (){
+                      setState(() {
+                        numberofOrders += 1;
+                        totalAmount = product.price * numberofOrders;
+                      });
+                    },
+                    style: const ButtonStyle(
+                        backgroundColor: WidgetStatePropertyAll(Colors.white)
+                    ),
                   ),
                 ],
               )
