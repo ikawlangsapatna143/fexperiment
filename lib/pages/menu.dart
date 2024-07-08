@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:untitled2/services/menuCard.dart';
 import 'package:untitled2/services/product.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:untitled2/pages/selectedProduct.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -91,9 +91,15 @@ class _MenuState extends State<Menu> {
                              ),
                            ),
                            Text(products[index].price.toString()),
-                           Text(products[index].description)
+                           //Text(products[index].description)
                          ],
                        ),
+                       onTap: (){
+                         Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                         Selectedproduct(product: products[index]),
+                         )
+                         );
+                       }
                      ),
                    );
                  }

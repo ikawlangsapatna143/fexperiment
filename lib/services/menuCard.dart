@@ -23,6 +23,7 @@ class Menucard extends StatelessWidget {
             Text('${product.price}'),
           ],
         ),
+
       ),
     );
   }
