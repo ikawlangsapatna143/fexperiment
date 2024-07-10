@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:untitled2/services/user.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   @override
@@ -9,6 +14,28 @@ class _LoginState extends State<Login> {
   final formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
+
+  Widget buttonContent = Text('Login');
+
+  Widget loadingDisplay = CircularProgressIndicator();
+
+Future<bool> login(User user)async{
+  final response = await http.post(
+    Uri.parse('http://10.0.2.2:8080/api/v1/Auth/login'),
+        headers: <String, String>{
+      'Content-Type' : 'application/json; charset=UTF-8'
+  },
+    body: jsonEncode(<String, dynamic>{
+      'usernameOrEmail' : user.email,
+      'password' : user.password,
+    }),
+  );
+  if(response.statusCode == 200){
+    return true;
+  }
+  return false;
+  //print(response.body);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -87,13 +114,34 @@ class _LoginState extends State<Login> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          print(email);
-                          print(password);
+                          User user = User(
+                              username: '',
+                              email: email,
+                              password: password
+                          );
+                         //  if(login(user)){
+                         // Navigator.pushReplacementNamed(context, '/dasboard');
+                         //  }
+                          setState(() {
+                            buttonContent = FutureBuilder(
+                                future: login(user),
+                                builder: (context, snapshots){
+                                  if(snapshots.connectionState == ConnectionState.waiting){
+                                    return loadingDisplay;
+                                  }
+                                  if(snapshots.hasData){
+
+                                  }
+                                  return Text('Login');
+                                }
+                            );
+                          });
+                         // login(user);
                           Navigator.pushReplacementNamed(context, '/');
                           // Implement your login logic here
                         }
                       },
-                      child: Text('Login'),
+                      child: buttonContent,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
                         foregroundColor: Colors.deepPurple[600],
