@@ -41,6 +41,11 @@ int numberofOrders = 1;
         children: [
           Column(
             children: [
+              Container(
+                width: 400,
+                height: 400,
+             child:  Image.network(product.url)
+              ),
               Text(widget.product.productName),
               Text(widget.product.description),
             ],
