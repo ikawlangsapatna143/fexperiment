@@ -42,8 +42,14 @@ class _signupState extends State<Signup> {
           child: Padding(
             padding: EdgeInsets.fromLTRB(15.0, 50.0, 10.0, 0),
             child: Column(children: <Widget>[
+              Center(
+                child: Image.asset(
+                  'assets/logo.png',
+                  width: 250,
+                ),
+              ),
               Text(
-                'Experiment!',
+                'ICECREAMPIE HUB!',
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     letterSpacing: 2.0,
